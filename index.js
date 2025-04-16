@@ -1,50 +1,73 @@
 let pipWindow = null;
-var simplemde = new SimpleMDE({ element: document.getElementById("bloquinho") });
+// Most options demonstrate the non-default behavior
+var simplemde = new SimpleMDE({
+	autofocus: true,
+	autosave: {
+		enabled: true,
+		uniqueId: "MyUniqueID",
+		delay: 1000,
+	},
+	blockStyles: {
+		bold: "__",
+		italic: "_"
+	},
+	element: document.getElementById("bloquinho"),
+	forceSync: true,
+	hideIcons: ["guide", "heading"],
+	indentWithTabs: false,
+	initialValue: "Katchau!",
+	
+	lineWrapping: false,
+	parsingConfig: {
+		allowAtxHeaderWithoutSpace: true,
+		strikethrough: false,
+		underscoresBreakWords: true,
+	},
+	placeholder: "Escreva seu Markdown aqui...",
+	previewRender: function(plainText) {
+		return customMarkdownParser(plainText); // Returns HTML from a custom parser
+	},
+	previewRender: function(plainText, preview) { // Async method
+		setTimeout(function(){
+			preview.innerHTML = customMarkdownParser(plainText);
+		}, 250);
+
+		return "Loading...";
+	},
+	promptURLs: true,
+	renderingConfig: {
+		singleLineBreaks: false,
+		codeSyntaxHighlighting: true,
+	},
+	shortcuts: {
+		drawTable: "Cmd-Alt-T"
+	},
+	showIcons: ["code", "table"],
+	spellChecker: false,
+	status: false,
+	status: ["autosave", "lines", "words", "cursor"], // Optional usage
+	status: ["autosave", "lines", "words", "cursor", {
+		className: "keystrokes",
+		defaultValue: function(el) {
+			this.keystrokes = 0;
+			el.innerHTML = "0 Keystrokes";
+		},
+		onUpdate: function(el) {
+			el.innerHTML = ++this.keystrokes + " Keystrokes";
+		}
+	}], // Another optional usage, with a custom status bar item that counts keystrokes
+	styleSelectedText: false,
+	tabSize: 4,
+});
 
 async function enterPiP() {
 	const conteiner = document.querySelector("#conteiner");
-	const pipOptions = {
-		width: conteiner.clientWidth,
-		height: conteiner.clientHeight
-	};
+	const pipOptions = { width: 800, height: 800 };
 
 	pipWindow = await documentPictureInPicture.requestWindow(pipOptions);
-
+	
 	// Move o conteúdo para a janela PiP
-	pipWindow.document.body.appendChild(conteiner);
-
-	// Adiciona estilos básicos para manter aparência
-	const style = pipWindow.document.createElement("style");
-	style.textContent = `
-		html, body {
-    		height: 100%;
-			width: 100%;
-    		margin: 0;
-			overflow: hidden;
-		}
-		body {
-			background-color: #222233;
-			color: #ddddff;
-			font-family: Consolas, monospace;
-			padding: 10px;
-			display: flex;
-			justify-content: center;
-    		align-items: center;
-		}		
-		textarea {
-			flex: 1;
-			width: 80vw;
-    		height: 80vh;
-			font-size: 16px;
-			background-color: #333344;
-			color: #ddddff;
-			border: none;
-			border-radius: 5px;
-			resize: none;
-    		box-sizing: border-box;
-		}		
-	`;
-	pipWindow.document.head.appendChild(style);
+	pipWindow.document.body.appendChild(conteiner);	
 
 	// Foco automático no textarea
 	requestAnimationFrame(() => {
