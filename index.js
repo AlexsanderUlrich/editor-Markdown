@@ -110,7 +110,7 @@ async function enterPiP() {
         </div>
       </main>
 
-      <script src="node_modules/simplemde/dist/simplemde.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"></script>
     </body>
     </html>
   `);
