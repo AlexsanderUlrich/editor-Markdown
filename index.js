@@ -10,6 +10,7 @@ const simplemde = new SimpleMDE({
     delay: 1000,
   },
   element: document.getElementById("bloquinho"),
+  spellChecker: false,
   forceSync: true,
   hideIcons: ["guide", "heading"],
   initialValue: "Katchau!",
