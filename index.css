@@ -73,3 +73,22 @@ textarea {
 	background-color: #222233;
 	color: #ddddff;
 }
+
+.CodeMirror {
+    color: #ddddff !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #333344 !important;
+	border: none !important;
+}
+
+.CodeMirror-scroll {
+    min-height: 60vh !important;
+    min-width: 80.5vw !important;
+}
+
+.editor-toolbar {
+    background-color: #2b2b30 !important;
+    color: #ffffff !important;
+	border: none !important;
+}
