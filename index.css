@@ -67,6 +67,7 @@ textarea {
 	padding-top: 2px;
 	padding-bottom: 2px;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 .botao:hover {
@@ -74,21 +75,97 @@ textarea {
 	color: #ddddff;
 }
 
+/* CodeMirror */
 .CodeMirror {
-    color: #ddddff !important;
-    position: relative !important;
-    overflow: hidden !important;
-    background: #333344 !important;
+	color: #ddddff !important;
+	position: relative !important;
+	overflow: hidden !important;
+	background: #333344 !important;
 	border: none !important;
 }
 
 .CodeMirror-scroll {
-    min-height: 60vh !important;
-    min-width: 80.5vw !important;
+	min-height: 60vh !important;
+	min-width: 80.5vw !important;
 }
 
+/* Toolbar */
 .editor-toolbar {
-    background-color: #2b2b30 !important;
-    color: #ffffff !important;
+	background-color: #2b2b30 !important;
+	color: #ffffff !important;
 	border: none !important;
+}
+
+/* Preview do Markdown */
+.editor-preview,
+.editor-preview-active,
+.editor-preview-active-side {
+	background-color: #333344 !important;
+	color: #ddddff !important;
+	padding: 20px;
+	overflow-y: auto;
+}
+
+/* Estilo para cabeçalhos no preview */
+.editor-preview h1,
+.editor-preview h2,
+.editor-preview h3,
+.editor-preview h4,
+.editor-preview h5 {
+	color: #ddddff;
+	border-bottom: 1px solid #444455;
+}
+
+/* Listas, links, blocos */
+.editor-preview ul,
+.editor-preview ol {
+	padding-left: 20px;
+}
+
+.editor-preview a {
+	color: #8899ff;
+	text-decoration: underline;
+}
+
+.editor-preview code {
+	background-color: #222233;
+	color: #ffaa88;
+	padding: 2px 4px;
+	border-radius: 3px;
+	font-family: "Consolas", monospace;
+}
+
+/* Código em bloco */
+.editor-preview pre {
+	background-color: #222233;
+	padding: 10px;
+	border-radius: 5px;
+	overflow-x: auto;
+	color: #ffaa88;
+}
+
+/* Blocos de citação */
+.editor-preview blockquote {
+	border-left: 4px solid #555577;
+	padding-left: 15px;
+	color: #ccccdd;
+}
+
+/* Tabelas */
+.editor-preview table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.editor-preview th,
+.editor-preview td {
+	border: 1px solid #444455;
+	padding: 8px;
+	text-align: left;
+}
+
+.editor-preview th {
+	background-color: #2a2a3a;
+	color: #eeeeff;
 }
